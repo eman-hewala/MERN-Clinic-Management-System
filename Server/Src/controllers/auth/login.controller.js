@@ -4,16 +4,16 @@ const bcrypt = require('bcrypt');
 
 const login = async (req, res) => {
     try{
-        const {confirmationCode, password} = req.body;
+        const {staffCode, password} = req.body;
 
-        if(!confirmationCode || !password){
+        if(!staffCode || !password){
             return res.status(400).json({
                 STATUS_CODE : 400,
                 message: "All fields required!"
             });
         }
 
-        const user = await User.findOne({confirmationCode}).select('+password');
+        const user = await User.findOne({staffCode}).select('+password');
 
         if(!user){
             return res.status(401).json({
@@ -60,7 +60,7 @@ const login = async (req, res) => {
         message: "Login successful!",
         data: {
                 id: user._id,
-                fullname: user.fullname,
+                name: user.name,
                 role: user.role,
             }
         });

@@ -4,10 +4,12 @@ const personSchema = require("../schema/person.schema");
 const userSchema = new mongoose.Schema({
     ...personSchema.obj,
 
-    confirmationCode:{
-        type: Number,
+    staffCode:{
+        type: String,
         required: true,
-        match: /^[0-9]{2026}$/,
+        unique: true,
+        trim: true,
+        match: /^[0-9]{6}$/,
     },
     password:{
         type: String,

@@ -22,7 +22,8 @@ const personSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true,
-        match: [/^\+201[0125][0-9]{8}$/]
+        unique: true,
+        match: [/^01[0125][0-9]{8}$/, "Invalid phone number"]
     },
     address: {
         type: String,
