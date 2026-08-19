@@ -30,18 +30,7 @@ const personSchema = new mongoose.Schema({
         required: false,
         trim: true
     },
-},{
-    _id: false,
-    toJSON: { virtuals: true },
-    toObject: { virtuals: true }
-});
+},{_id: false,});
 
-const fullName = personSchema.virtual('fullName');
-
-fullName.get(function() {
-    return [this.name.first, this.name.middle, this.name.last]
-    .filter(Boolean)
-    .join(' ');
-});
 
 module.exports = personSchema;

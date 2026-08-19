@@ -40,4 +40,5 @@ patientSchema.virtual("age").get(function () {
 
     return age;
 });
+
 module.exports = mongoose.model("Patient", patientSchema);
