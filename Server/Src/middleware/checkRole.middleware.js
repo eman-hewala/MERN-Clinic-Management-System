@@ -1,4 +1,12 @@
-const checkRole = (req, res, next) =>{
-
+const checkRole = (...allowedRoles) =>{
+    return (req, res, next) =>{
+        if(!req.user){
+            return res.status(401).json({ message:"User is not authenticated" });
+        }
+        if(!allowedRoles.includes(req.user.role)){
+            return res.status(403).json({ message:"Access not allowed"});
+        }
+        next();
+    };
 };
 module.exports = checkRole;
