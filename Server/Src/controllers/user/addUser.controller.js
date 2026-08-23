@@ -18,9 +18,9 @@ const addUser = async (req, res) => {
                 message: "Missing required fields"
             });
         }
-        const normalizedPhone = phone.tirm();
+        const normalizedPhone = phone.trim();
         
-        const existingUser = await User.findOne({phone: normalizedPhone});
+        const existingUser = await User.findOne({phone: normalizedPhone}).lean();
 
         if(existingUser){
             return res.status(409).json({
@@ -49,6 +49,12 @@ const addUser = async (req, res) => {
         });
 
     }catch(err){
+        if (err.code === 11000) {
+            return res.status(409).json({
+                STATUS_CODE: 409,
+                message: "User already exists"
+            });
+        }
 
         console.error('addUser error:', err);
         return res.status(500).json({ 

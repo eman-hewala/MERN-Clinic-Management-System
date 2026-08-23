@@ -10,6 +10,7 @@ const patientSchema = new mongoose.Schema({
         required: true
     },
     dateOfBirth:{
+        // YY-MM-DD 
         type: Date,
         required: true,
     },
@@ -20,25 +21,6 @@ const patientSchema = new mongoose.Schema({
     },
 },{
     timestamps: true,
-    toJSON: { virtuals: true },
-    toObject: { virtuals: true }
-});
-patientSchema.virtual("age").get(function () {
-    const today = new Date();
-
-    let age = today.getFullYear() - this.dateOfBirth.getFullYear();
-
-    const monthDiff = today.getMonth() - this.dateOfBirth.getMonth();
-
-    if (
-        monthDiff < 0 ||
-        (monthDiff === 0 &&
-            today.getDate() < this.dateOfBirth.getDate())
-    ) {
-        age--;
-    }
-
-    return age;
 });
 
 module.exports = mongoose.model("Patient", patientSchema);
