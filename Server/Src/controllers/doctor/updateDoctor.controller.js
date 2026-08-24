@@ -52,14 +52,7 @@ const updateDoctor = async (req, res) =>{
         });
 
     }catch(err){
-        if (err.name === 'CastError') {
-            return res.status(400).json({ message: 'Invalid doctor ID format' });
-        }
-        if (err.name === 'ValidationError') {
-            return res.status(400).json({ message: err.message });
-        }
-        console.error('update doctor error:', err);
-        return res.status(500).json({ success: false, message: "Internal server error"});
+        next(err);
     }
 };
 

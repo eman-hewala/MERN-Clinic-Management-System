@@ -14,11 +14,7 @@ const logout = async(req,res)=>{
         });
     }
     catch(err){
-        console.error("Logout error:", err);
-        return res.status(500).json({
-            STATUS_CODE: 500,
-            message: "Something went wrong. Please try again later.",
-        });
+        next(err);
     }
 };
 module.exports = logout;

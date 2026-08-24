@@ -29,11 +29,7 @@ const getPatientById = async(req, res)=>{
         });
 
     }catch(err){
-        console.error('get patient error:', err);
-        return res.status(500).json({
-            success: false,
-            message: "Internal Server Error"
-        });
+        next(err);
     };
 };
 

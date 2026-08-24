@@ -29,14 +29,8 @@ const getUserById = async (req, res) => {
             data: user
         });
 
-
-
     }catch(err){
-        console.error('get users error:', err);
-        return res.status(500).json({
-            success: false,
-            message: "Internal server error"
-        });
+        next(err);
     };
 };
 module.exports = getUserById;

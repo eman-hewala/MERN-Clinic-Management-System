@@ -33,18 +33,7 @@ const addPatient = async (req, res) => {
         });
 
     }catch(err){
-        if (err.code === 11000) {
-            return res.status(409).json({
-                STATUS_CODE: 409,
-                message: "Patient already exists"
-            });
-        }
-        
-        console.error('addPatient error:', err);
-        return res.status(500).json({ 
-            success: false, 
-            message: 'Internal server error'
-        });
+        next(err);
     };
 };
 

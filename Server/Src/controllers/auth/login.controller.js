@@ -66,12 +66,7 @@ const login = async (req, res) => {
         });
     }
     catch(err){
-        console.error("Login error:", err);
-
-        return res.status(500).json({
-            STATUS_CODE: 500,
-            message: "Something went wrong. Please try again later.",
-        });
+        next(err);
     }
 };
 

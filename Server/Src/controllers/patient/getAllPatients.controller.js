@@ -11,11 +11,7 @@ const getAllPatients = async(req, res)=>{
             data: ptients
         });
     }catch(err){
-        console.error('get patients error:', err);
-        return res.status(500).json({
-            success: false,
-            message: "Internal Server Error"
-        });
+        next(err);
     };
 };
 

@@ -9,7 +9,7 @@ const updateDoctor = require('../controllers/doctor/updateDoctor.controller');
 const getAllDoctors = require('../controllers/doctor/getAllDoctors.controller');
 const getDoctorById = require('../controllers/doctor/getDoctorById.controller');
 
-router.use(auth, checkRole('admin'));
+router.use(auth, checkRole('Admin'));
 
 router.post('/', addDoctor);
 router.patch('/:id', updateDoctor);

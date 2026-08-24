@@ -12,11 +12,7 @@ const getAllDoctors = async (req, res) =>{
             data: getDoctors
         });
     }catch(err){
-        console.error('add doctor error:', err);
-        return res.status(500).json({
-            success: false,
-            message: "Internal server error"
-        });
+        next(err);
     }
 };
 
