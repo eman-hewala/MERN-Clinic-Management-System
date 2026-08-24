@@ -18,9 +18,9 @@ const addUser = async (req, res) => {
                 message: "Missing required fields"
             });
         }
-        const normalizedPhone = phone.trim();
+        const normalizedPhone = phone.tirm();
         
-        const existingUser = await User.findOne({phone: normalizedPhone}).lean();
+        const existingUser = await User.findOne({phone: normalizedPhone});
 
         if(existingUser){
             return res.status(409).json({

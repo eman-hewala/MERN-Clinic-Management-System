@@ -12,7 +12,7 @@ const getUserById = async (req, res) => {
                 message: "Invalid user id."
             });
         }
-
+        
         const user = await User.findById(id)
             .select("name phone address role isActive");
 

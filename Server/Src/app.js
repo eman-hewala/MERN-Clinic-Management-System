@@ -6,7 +6,7 @@ const notFound = require('./middleware/notFound.middleware');
 const errorHandler = require('./middleware/errorHandler.middleware');
 
 const cookieParser = require('cookie-parser');
-const serverRoutes = require('./routes/server.route');
+const serverRoutes = require('./routes/server.routes');
 
 app.use(cors());
 app.use(express.json());
