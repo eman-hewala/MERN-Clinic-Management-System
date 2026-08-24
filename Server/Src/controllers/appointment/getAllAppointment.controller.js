@@ -1,7 +1,7 @@
 const appointmentModel=require("../../models/Appointement.model");
 
-const getAllAppointment_Controller=async(req,res)=>{
+const getAllAppointmentController=async(req,res)=>{
 
 }
 
-module.exports=getAllAppointment_Controller;
+module.exports=getAllAppointmentController;

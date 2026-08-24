@@ -78,7 +78,8 @@ const appointmentModel= mongoose.Schema({
         required:true,
     },
     confirmedBy:{ 
-        type: ObjectId, ref: "User"
+        type :objectId,
+        ref:"User"
     },
     confirmedAt:{
         type:Date,
@@ -87,8 +88,8 @@ const appointmentModel= mongoose.Schema({
         type:Date,
     },
     checkedInBy:{ 
-        type:ObjectId, 
-        ref:"User" 
+        type : objectId,
+        ref:"User"
     },
     noShowAt:{
         type:Date,
