@@ -121,19 +121,19 @@ const appointmentModel= mongoose.Schema({
 
 },{timestamps:true});
 
-// appointmentSchema.index({ doctor: 1, startAt: 1 });
+// appointmentModel.index({ doctor: 1, startAt: 1 });
 
 // // Patient appointment history, most recent first
-// appointmentSchema.index({ patient: 1, startAt: -1 });
+// appointmentModel.index({ patient: 1, startAt: -1 });
 
 // // Status-filtered dashboards within a date window
-// appointmentSchema.index({ status: 1, startAt: 1 });
+// appointmentModel.index({ status: 1, startAt: 1 });
 
 // // Branch-scoped scheduling and reporting
-// appointmentSchema.index({ clinic: 1, startAt: 1 });
+// appointmentModel.index({ clinic: 1, startAt: 1 });
 
 // // Recent-bookings feed
-// appointmentSchema.index({ createdAt: -1 });
+// appointmentModel.index({ createdAt: -1 });
 
 
 module.exports= mongoose.model("Appointment",appointmentModel);
