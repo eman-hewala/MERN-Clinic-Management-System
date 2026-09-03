@@ -38,7 +38,7 @@ const investigationResultModel=mongoose.Schema({
         type: Date
     },
     reviewedBy: { 
-        type: ObjectId,
+        type: objectId,
         ref: "User" 
     },
     reviewedAt: { 

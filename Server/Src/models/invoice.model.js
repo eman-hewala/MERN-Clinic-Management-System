@@ -23,6 +23,27 @@ const invoiceModel= mongoose.Schema({
         ref: "User",
         required :true
     },
+    updatedAt: {
+    type: Date
+    },
+    updatedBy: {
+        type: objectId,
+        ref: "User",
+        required :true
+    },
+    cancelledAt: {
+    type: Date
+    },
+    cancelledBy: {
+    type: objectId,
+    ref: "User"
+    },
+
+    cancellationReason: {
+    type: String,
+    trim: true,
+    maxlength: 500
+    },
     status: {
             type: String,
             enum: [
@@ -129,4 +150,4 @@ invoiceModel.index({patient: 1,createdAt: -1});
 invoiceModel.index({doctor: 1,createdAt: -1});
 invoiceModel.index({status: 1,createdAt: -1});
 
-module.exports=mongoose.Model("Invoice",invoiceModel)
+module.exports=mongoose.model("Invoice",invoiceModel)

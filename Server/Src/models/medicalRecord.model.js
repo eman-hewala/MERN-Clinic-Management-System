@@ -79,7 +79,7 @@ const medicalRecordModel= mongoose.Schema({
             name: {
             type: String,
             trim: true,
-            required: terue
+            required: true
         },
         type: {
             type: String,
