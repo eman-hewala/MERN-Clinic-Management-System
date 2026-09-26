@@ -13,11 +13,11 @@ const cancellInvoicesController=require("../controllers/invoice/cancellInvoice.c
 
 router.use(auth);
 
-router.post("/",checkRole("admin","receptionist"),addInvoiceController);
-router.post("/:invoiceId/payments",checkRole("admin","receptionist"),addPaymentController);
-router.patch("/:invoiceId",checkRole("admin","receptionist"),updateInvoicesController);
-router.get("/:invoiceId",checkRole("admin","receptionist","doctor"),getInvoiceController);
-router.get("/",checkRole("admin","receptionist","doctor"),getAllInvoicesController);
-router.patch("/:invoiceId/cancell",checkRole("admin","receptionist"),cancellInvoicesController);
+router.post("/",checkRole("Admin","Receptionist"),addInvoiceController);
+router.post("/:invoiceId/payments",checkRole("Admin","Receptionist"),addPaymentController);
+router.patch("/:invoiceId",checkRole("Admin","Receptionist"),updateInvoicesController);
+router.get("/:invoiceId",checkRole("Admin","Receptionist","Doctor"),getInvoiceController);
+router.get("/",checkRole("Admin","Receptionist","Doctor"),getAllInvoicesController);
+router.patch("/:invoiceId/cancell",checkRole("Admin","Receptionist"),cancellInvoicesController);
 
 module.exports=router;

@@ -14,10 +14,10 @@ const cancellOrderController= require("../controllers/investigationOrder/cancelI
 
 router.use(auth);
 
-router.post("/",checkRole("admin","doctor"),createOrderController);
-router.patch("/:orderId",checkRole("admin","doctor"),updateOrdersController);
-router.get("/:orderId",checkRole("admin","receptionist","doctor"),getOrderController);
-router.get("/",checkRole("admin","receptionist","doctor"),getAllOrdersController);
-router.patch("/:orderId/cancell",checkRole("admin","doctor"),cancellOrderController);
+router.post("/",checkRole("Admin","Doctor"),createOrderController);
+router.patch("/:orderId",checkRole("Admin","Doctor"),updateOrdersController);
+router.get("/:orderId",checkRole("Admin","Receptionist","Doctor"),getOrderController);
+router.get("/",checkRole("Admin","Receptionist","Doctor"),getAllOrdersController);
+router.patch("/:orderId/cancell",checkRole("Admin","Doctor"),cancellOrderController);
 
 module.exports=router;

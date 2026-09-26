@@ -126,7 +126,7 @@ const invoiceModel= mongoose.Schema({
                     type: String,
                     enum: [
                         "cash",
-                        "banck_transfer",
+                        "bank_transfer",
                         "instapay",
                         "vodafone_cash",
                         "other"

@@ -97,4 +97,4 @@ const medicalRecordModel= mongoose.Schema({
 medicalRecordModel.index({ updatedBy: 1 });
 medicalRecordModel.index({ updatedAt: -1 });
 
-module.exports= mongoose.model("Medical_record",medicalRecordModel);
+module.exports= mongoose.model("MedicalRecord",medicalRecordModel);

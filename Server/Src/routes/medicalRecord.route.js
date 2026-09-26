@@ -12,9 +12,9 @@ const getAllMedicalRecordsController= require("../controllers/medicalRecord/getA
 
 router.use(auth);
 
-router.post("/",checkRole("admin","doctor"),createMedicalRecordController);
-router.patch("/:patientId",checkRole("admin","doctor"),updateMedicalRecordController);
-router.get("/:patientId",checkRole("admin","doctor","receptionist"),getPatientMedicalRecordController);
-router.get("/",checkRole("admin","doctor"),getAllMedicalRecordsController)
+router.post("/",checkRole("Admin","Doctor"),createMedicalRecordController);
+router.patch("/:patientId",checkRole("Admin","Doctor"),updateMedicalRecordController);
+router.get("/:patientId",checkRole("Admin","Doctor","Receptionist"),getPatientMedicalRecordController);
+router.get("/",checkRole("Admin","Doctor"),getAllMedicalRecordsController)
 
 module.exports=router;

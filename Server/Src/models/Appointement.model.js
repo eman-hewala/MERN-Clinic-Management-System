@@ -7,7 +7,7 @@ const appointmentModel= mongoose.Schema({
         ref:"Patient",
         required:true,
     },
-    doctor:{
+    doctor :{
         type:objectId,
         ref:"Doctor",
         required:true,
@@ -17,7 +17,7 @@ const appointmentModel= mongoose.Schema({
             min: 0,
     },
 
-    startAt:{
+    startAt :{
         type: Date,
         required: true,  
     },
@@ -56,7 +56,6 @@ const appointmentModel= mongoose.Schema({
             "online"
             ],
         required:true,
-        default:"admin"
     },
     bookingNotes:{
         type:String,
@@ -71,7 +70,8 @@ const appointmentModel= mongoose.Schema({
             "follow_up",
             "routine_checkup",
             "post_op_follow_up"
-        ]
+        ],
+        required:true,
     },
     createdBy:{type:objectId,
         ref:"User",
@@ -121,19 +121,17 @@ const appointmentModel= mongoose.Schema({
 
 },{timestamps:true});
 
-// appointmentModel.index({ doctor: 1, startAt: 1 });
+appointmentModel.index({ doctor: 1, startAt: 1 });
 
-// // Patient appointment history, most recent first
-// appointmentModel.index({ patient: 1, startAt: -1 });
+// Patient appointment history, most recent first
+appointmentModel.index({ patient: 1, startAt: -1 });
 
-// // Status-filtered dashboards within a date window
-// appointmentModel.index({ status: 1, startAt: 1 });
+// Status-filtered dashboards within a date window
+appointmentModel.index({ status: 1, startAt: 1 });
 
-// // Branch-scoped scheduling and reporting
-// appointmentModel.index({ clinic: 1, startAt: 1 });
+// Recent-bookings feed
+appointmentModel.index({ createdAt: -1 });
 
-// // Recent-bookings feed
-// appointmentModel.index({ createdAt: -1 });
 
 
 module.exports= mongoose.model("Appointment",appointmentModel);
