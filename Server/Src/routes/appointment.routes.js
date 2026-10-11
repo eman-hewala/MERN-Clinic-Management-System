@@ -12,11 +12,11 @@ const cancelAppointmentController = require("../controllers/appointment/cancelAp
 
 router.use(auth);
 
-router.post("/",checkRole("Admin","Receptionist"),setAppointmentController);
-router.patch("/:appointmentId",checkRole("Admin","Receptionist"),updateAppointmentController);
-router.get("/",checkRole("Admin","Receptionist"),getAllAppointmentController);
-router.get("/:appointmentId",checkRole("Admin","Receptionist","Doctor"),getAppointmentController);
-router.patch("/:appointmentId/cancel",checkRole("Admin","Receptionist"),cancelAppointmentController);
+router.post("/",checkRole("admin","receptionist"),setAppointmentController);
+router.patch("/:appointmentId",checkRole("admin","receptionist"),updateAppointmentController);
+router.get("/",checkRole("admin","receptionist"),getAllAppointmentController);
+router.get("/:appointmentId",checkRole("admin","receptionist","doctor"),getAppointmentController);
+router.patch("/:appointmentId/cancel",checkRole("admin","receptionist"),cancelAppointmentController);
 
 module.exports=router;
 

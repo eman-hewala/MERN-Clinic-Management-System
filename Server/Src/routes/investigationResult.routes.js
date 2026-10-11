@@ -11,9 +11,9 @@ const getAllResultsController= require("../controllers/investigationResults/getA
 
 router.use(auth);
 
-router.post("/",checkRole("Admin","Doctor"),createResultsController);
-router.patch("/:resultId",checkRole("Admin","Doctor"),updateResultsController);
-router.get("/:resultId",checkRole("Admin","Receptionist","Doctor"),getResultController);
-router.get("/",checkRole("Admin","Receptionist","Doctor"),getAllResultsController);
+router.post("/",checkRole("admin","doctor"),createResultsController);
+router.patch("/:resultId",checkRole("admin","doctor"),updateResultsController);
+router.get("/:resultId",checkRole("admin","receptionist","doctor"),getResultController);
+router.get("/",checkRole("admin","receptionist","doctor"),getAllResultsController);
 
 module.exports=router;

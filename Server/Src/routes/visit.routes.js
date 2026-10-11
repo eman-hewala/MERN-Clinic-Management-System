@@ -12,11 +12,11 @@ const getAllVisitsController=require("../controllers/visit/getAllPatientVisits.c
 
 router.use(auth);
 
-router.post("/",checkRole("Admin","Doctor"),createVisitController);
-router.patch("/:visitId",checkRole("Admin","Doctor"),updateVisitController);
-router.get("/:visitId",checkRole("Admin","Receptionist","Doctor"),getVisitController);
-router.get("/",checkRole("Admin","Doctor"),getAllVisitsController);
-router.patch("/:visitId/cancel",checkRole("Admin","Doctor"),cancellVisitController);
+router.post("/",checkRole("admin","doctor"),createVisitController);
+router.patch("/:visitId",checkRole("admin","doctor"),updateVisitController);
+router.get("/:visitId",checkRole("admin","receptionist","doctor"),getVisitController);
+router.get("/",checkRole("admin","doctor"),getAllVisitsController);
+router.patch("/:visitId/cancel",checkRole("admin","doctor"),cancellVisitController);
 
 
 module.exports=router;

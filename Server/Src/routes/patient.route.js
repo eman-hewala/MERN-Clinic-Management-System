@@ -10,8 +10,8 @@ const getPatientById = require('../controllers/patient/getPatientById.controller
 
 router.use(auth);
 
-router.post('/', checkRole('Receptionist'), addPatient);
-router.get('/', checkRole('Admin','Receptionist'), getPatients);
-router.get('/:id', checkRole('Receptionist', 'Doctor'), getPatientById);
+router.post('/', checkRole('receptionist'), addPatient);
+router.get('/', checkRole('admin','receptionist'), getPatients);
+router.get('/:id', checkRole('receptionist', 'doctor'), getPatientById);
 
 module.exports = router;

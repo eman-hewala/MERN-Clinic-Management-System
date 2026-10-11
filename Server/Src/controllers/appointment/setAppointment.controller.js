@@ -105,10 +105,14 @@ return res.status(200).json({
                 data: appointment
             });
 
-    } catch (err) {
-        
+    } catch (error) {
+        console.error(error)
+        return res.status(500).json({
+        status_code: 500,
+        message: "Internal Server Error",
+        data: null
+        });
     }
-
 }
 
 module.exports=setAppointmentController;

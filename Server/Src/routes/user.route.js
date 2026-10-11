@@ -10,7 +10,7 @@ const getUserById = require('../controllers/user/getUserById.controller');
 const updateUser = require('../controllers/user/updateUser.controller');
 
 
-router.use(auth, checkRole('Admin'));
+router.use(auth, checkRole('admin'));
 
 router.post('/', addUser);
 router.get('/', getUsers);
