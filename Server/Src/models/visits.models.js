@@ -117,9 +117,8 @@ const visitModel= mongoose.Schema({
 
 },{timestamps: true},);
 
-// visitModel.index({ patient: 1, startedAt: -1 });
-// visitModel.index({ doctor: 1, startedAt: -1 });
-// visitModel.index({ appointment: 1 });
-
+visitModel.index({ patient: 1, startedAt: -1 });
+visitModel.index({ doctor: 1, startedAt: -1 });
+visitModel.index({ appointment: 1 }, { unique: true });
 
 module.exports=mongoose.model("Visit",visitModel);

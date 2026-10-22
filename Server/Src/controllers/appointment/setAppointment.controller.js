@@ -1,4 +1,3 @@
-
 const mongoose = require("mongoose");
 const { DateTime } = require("luxon");
 
@@ -136,7 +135,6 @@ const setAppointmentController = async (req, res) => {
 
         const startDate = parseAppointmentDate(startAt);
         const endDate = parseAppointmentDate(endAt);
-
         if (!startDate || !endDate) {
             return res.status(400).json({
                 status_code: 400,
@@ -160,7 +158,7 @@ const setAppointmentController = async (req, res) => {
         const clinicEnd = DateTime
             .fromJSDate(endDate)
             .setZone(CLINIC_TIMEZONE);
-
+            
         const schedules = doctorData.schedules;
 
         if (!schedules || schedules.length === 0) {

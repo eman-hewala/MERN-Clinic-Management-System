@@ -3,10 +3,7 @@ const appointmentModel = require("../../models/Appointement.model");
 
 const getAllAppointmentController = async (req, res) => {
     try {
-        // =========================
         // Pagination
-        // =========================
-
         const page = Math.max(
             1,
             Number.parseInt(req.query.page, 10) || 1
@@ -39,20 +36,13 @@ const getAllAppointmentController = async (req, res) => {
 
         const skip = (page - 1) * limit;
 
-
-        // =========================
         // Filters
-        // =========================
 
         const filter = {};
 
-
-        // =========================
         // Filter by Doctor
-        // =========================
 
         if (req.query.doctor !== undefined) {
-
             if (!mongoose.isValidObjectId(req.query.doctor)) {
                 return res.status(400).json({
                     status_code: 400,
@@ -63,14 +53,8 @@ const getAllAppointmentController = async (req, res) => {
 
             filter.doctor = req.query.doctor;
         }
-
-
-        // =========================
         // Filter by Status
-        // =========================
-
         if (req.query.status !== undefined) {
-
             const allowedStatuses = [
                 "pending",
                 "confirmed",
@@ -90,10 +74,7 @@ const getAllAppointmentController = async (req, res) => {
             filter.status = req.query.status;
         }
 
-
-        // =========================
         // Filter by Date / Time Range
-        // =========================
 
         if (
             req.query.from !== undefined ||
@@ -168,9 +149,7 @@ const getAllAppointmentController = async (req, res) => {
         }
 
 
-        // =========================
         // Query
-        // =========================
 
         const [appointments, totalAppointments] =
             await Promise.all([
@@ -205,9 +184,7 @@ const getAllAppointmentController = async (req, res) => {
             ]);
 
 
-        // =========================
         // Pagination Metadata
-        // =========================
 
         const totalPages = Math.ceil(
             totalAppointments / limit
