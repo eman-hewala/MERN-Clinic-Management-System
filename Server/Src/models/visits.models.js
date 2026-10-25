@@ -22,7 +22,8 @@ const visitModel= mongoose.Schema({
         enum: [
             "in_progress",
             "finalized",
-            "amended"
+            "amended",
+            "cancelled"
             ],
         default: "in_progress"
     },
@@ -109,6 +110,19 @@ const visitModel= mongoose.Schema({
             }
         }
     ],
+    cancelledBy: {
+        type: objectId,
+        ref:"User",
+        required:true
+    },
+    cancelledAt:{
+        type: Date,
+    },
+    cancellationReason: {
+        type: String,
+        trim:true,
+        maxlength: 500,
+    },
     doctorNotes:{
         type: String,
         trim: true,

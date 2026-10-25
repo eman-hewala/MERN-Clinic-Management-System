@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 
 const appointmentModel = require("../../models/Appointement.model");
 const doctorModel = require("../../models/doctor.model");
-const patientModel = require("../../models/patient.model");
 const visitModel=require("../../models/visits.models");
 
 const createVisitController= async(req,res)=>{
@@ -89,6 +88,13 @@ const createVisitController= async(req,res)=>{
             data: visit
         });
     } catch (error) {
+        if (error.code === 11000) {
+        return res.status(409).json({
+        status_code: 409,
+        message: "Visit is Already Exists",
+        data: null
+        });
+        }
         return res.status(500).json({
             status_code: 500,
             message: "Internal Server Error",
