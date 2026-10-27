@@ -106,7 +106,6 @@ const getAllAppointmentController = async (req, res) => {
                 filter.startAt.$gte = fromDate;
             }
 
-
             // To
             if (req.query.to !== undefined) {
 
@@ -131,8 +130,6 @@ const getAllAppointmentController = async (req, res) => {
 
                 filter.startAt.$lte = toDate;
             }
-
-
             // Make sure from <= to
             if (
                 filter.startAt.$gte &&
@@ -147,10 +144,7 @@ const getAllAppointmentController = async (req, res) => {
                 });
             }
         }
-
-
         // Query
-
         const [appointments, totalAppointments] =
             await Promise.all([
 
@@ -182,15 +176,10 @@ const getAllAppointmentController = async (req, res) => {
                 appointmentModel.countDocuments(filter)
 
             ]);
-
-
         // Pagination Metadata
-
         const totalPages = Math.ceil(
             totalAppointments / limit
         );
-
-
         return res.status(200).json({
             status_code: 200,
             message: "Appointments retrieved successfully",
