@@ -1,138 +1,122 @@
-const mongoose=require("mongoose");
-const objectId=mongoose.Schema.Types.ObjectId;
+const mongoose = require("mongoose");
+const objectId = mongoose.Schema.Types.ObjectId;
 
-const visitModel= mongoose.Schema({
-    appointment:{
+const visitModel = new mongoose.Schema({
+    appointment: {
         type: objectId,
-        ref:"Appointment",
-        required:true
+        ref: "Appointment",
+        required: true
     },
     doctor: {
         type: objectId,
         ref: "Doctor",
-        required:true
+        required: true
     },
-    patient:{
+    patient: {
         type: objectId,
         ref: "Patient",
-        required:true
+        required: true
     },
-    status:{
+    status: {
         type: String,
         enum: [
             "in_progress",
             "finalized",
             "amended",
             "cancelled"
-            ],
+        ],
         default: "in_progress"
     },
-    startedAt:{
+    startedAt: {
         type: Date,
-        default : Date.now
+        default: Date.now
     },
     endedAt: {
         type: Date,
     },
-    finalizedAt:{
+    finalizedAt: {
         type: Date,
     },
-    finalizedBy:{
+    finalizedBy: {
         type: objectId,
-        ref:"User",
+        ref: "User",
     },
     vitalSigns: {
-        bloodPressure: {
+    bloodPressure: {
         systolic: {
             type: Number,
-            min :0
+            min: 1,
+            max: 300
         },
         diastolic: {
             type: Number,
-            min: 0
+            min: 1,
+            max: 200
         }
     },
+
     heartRate: {
         type: Number,
-        min: 0
+        min: 1,
+        max: 300
     },
+
     temperature: {
         type: Number,
-        min: 0
+        min: 20,
+        max: 50
     },
+
     respiratoryRate: {
         type: Number,
-        min :0
+        min: 1,
+        max: 100
     },
+
     oxygenSaturation: {
         type: Number,
-        min : 0
+        min: 0,
+        max: 100
     },
+
     weight: {
         type: Number,
-        min :0
+        min: 0.1,
+        max: 500
     },
+
     height: {
         type: Number,
-        min: 0
+        min: 20,
+        max: 300
     }
     },
     diagnosis: {
         type: String,
-        trim:true,
+        trim: true,
         maxlength: 500,
     },
-    prescriptions: [
-        {
-            medication:{
-                type: String,
-                trim: true,
-                required : true,
-            },
-            dosage: {
-                type: String,
-                trim: true,
-                required: true,
-            },
-            frequency: {
-                type: String,
-                trim: true,
-                required: true,
-            },
-            duration: {
-                type: String,
-                trim: true,
-                required: true,
-            },
-            instructions: {
-                type: String,
-                trim: true,
-            }
-        }
-    ],
     cancelledBy: {
         type: objectId,
-        ref:"User",
-        required:true
+        ref: "User",
     },
-    cancelledAt:{
+    cancelledAt: {
         type: Date,
     },
     cancellationReason: {
         type: String,
-        trim:true,
+        trim: true,
         maxlength: 500,
     },
-    doctorNotes:{
+    doctorNotes: {
         type: String,
         trim: true,
         maxlength: 500,
     },
-
-},{timestamps: true},);
+}, { timestamps: true });
 
 visitModel.index({ patient: 1, startedAt: -1 });
 visitModel.index({ doctor: 1, startedAt: -1 });
 visitModel.index({ appointment: 1 }, { unique: true });
 
-module.exports=mongoose.model("Visit",visitModel);
+module.exports = mongoose.model("Visit", visitModel);

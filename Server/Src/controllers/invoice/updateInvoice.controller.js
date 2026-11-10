@@ -1,4 +1,4 @@
-const invoiceModel=require("../../models/invoice.model");
+const prescriptionModel=require("../../models/prescriptions.model");
 const updateInvoicesController= async(req,res)=>{
 
 };

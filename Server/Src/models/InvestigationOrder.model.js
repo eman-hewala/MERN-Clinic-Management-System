@@ -1,54 +1,71 @@
-const mongoose=require("mongoose");
-const objectId=mongoose.Schema.Types.ObjectId;
+const mongoose = require("mongoose");
+const objectId = mongoose.Schema.Types.ObjectId;
 
-const investigationOrdertModel=mongoose.Schema({
-    visit:{
+const investigationOrderModel = new mongoose.Schema({
+    visit: {
         type: objectId,
         ref: "Visit",
-        required :true
+        required: true
     },
-    patient:{
+    patient: {
         type: objectId,
         ref: "Patient",
-        required:true
+        required: true
     },
     orderedBy: {
         type: objectId,
         ref: "User",
-        required:true
-    },
-    category:{
-        type: String,
-        enum: ["lab","imaging","cardiology","eeg","other"],
         required: true
     },
-    type:{
+    category: {
+        type: String,
+        enum: [
+            "lab",
+            "imaging",
+            "cardiology",
+            "eeg",
+            "other"
+            ],
+        required: true
+    },
+    type: {
         type: String,
         trim: true,
-        required: true
+        required: true 
+    },
+    diagnosis: {
+        type: String,
+        trim: true,
+        required: true,    
+        maxlength: 500
     },
     status: {
         type: String,
-        enum:["orderd","in_progress","completed","cancelled"],
-        default: "orderd"
+        enum: [
+            "ordered",
+            "in_progress",
+            "completed",
+            "cancelled"
+            ],
+        default: "ordered"
+    }, 
+    priority: { 
+        type: String,
+        enum: [
+            "routine",
+            "urgent"
+            ], 
+        default: "routine"
     },
-    periority: {
-        type :String,
-        enum:["investigation","routin","urgent"],
-        default: "investigation"
-    },
-
     notes: {
         type: String,
         trim: true,
         maxlength: 500,
     },
-},{timestamps: true});
+}, { timestamps: true });
 
-// investigationOrdertModel.index({ patient: 1, status: 1 });
-// investigationOrdertModel.index({ status: 1, category: 1 });
-// investigationOrdertModel.index({visit: 1}); 
+investigationOrderModel.index({ status: 1, category: 1, createdAt: -1 });
+investigationOrderModel.index({ patient: 1, createdAt: -1 });
+investigationOrderModel.index({ visit: 1 });
 
-// department work queues
-
-module.exports=mongoose.model("InvestigationOrder",investigationOrdertModel);
+module.exports = mongoose.model("InvestigationOrder", investigationOrderModel);
